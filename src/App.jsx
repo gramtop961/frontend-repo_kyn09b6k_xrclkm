@@ -1,28 +1,52 @@
-import { useState } from 'react'
+import React from 'react';
+import { Home, Dumbbell, Leaf, Brain, Calendar } from 'lucide-react';
+import HeroIntro from './components/HeroIntro';
+import ExerciseTips from './components/ExerciseTips';
+import Nutrition from './components/Nutrition';
+import MentalWellness from './components/MentalWellness';
+import DailyPlanner from './components/DailyPlanner';
 
-function App() {
-  const [count, setCount] = useState(0)
+const NavLink = ({ href, icon: Icon, label }) => (
+  <a href={href} className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">
+    <Icon className="h-4 w-4" />
+    {label}
+  </a>
+);
 
+const App = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-white text-gray-900">
+      <header className="sticky top-0 z-10 border-b bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+          <div className="flex items-center gap-2 font-semibold">
+            <Home className="h-5 w-5 text-blue-600" />
+            <span>Healthy Start</span>
+          </div>
+          <nav className="hidden gap-1 sm:flex">
+            <NavLink href="#home" icon={Home} label="Home" />
+            <NavLink href="#exercise" icon={Dumbbell} label="Exercise" />
+            <NavLink href="#nutrition" icon={Leaf} label="Nutrition" />
+            <NavLink href="#wellness" icon={Brain} label="Wellness" />
+            <NavLink href="#planner" icon={Calendar} label="Planner" />
+          </nav>
         </div>
-      </div>
-    </div>
-  )
-}
+      </header>
 
-export default App
+      <main>
+        <HeroIntro />
+        <ExerciseTips />
+        <Nutrition />
+        <MentalWellness />
+        <DailyPlanner />
+      </main>
+
+      <footer className="border-t bg-gray-50">
+        <div className="mx-auto max-w-5xl px-6 py-6 text-center text-sm text-gray-600">
+          Made for a college project. Stay consistent, start small, and keep moving.
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
